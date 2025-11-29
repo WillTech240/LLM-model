@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wellness Analyzer - AI Intelligence System</title>
+    <meta name="description" content="Analyze your digital wellness patterns with AI-powered insights">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">Digital Wellness Analyzer</h1>
+                <p class="subtitle">AI-powered insights for your screen time patterns</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section card">
+                <h2 class="section-title">Input Your Data</h2>
+                <p class="section-description">Paste your daily usage data in JSON format below</p>
+
+                <div class="form-group">
+                    <textarea 
+                        id="jsonInput" 
+                        class="json-input" 
+                        placeholder='Paste JSON here or click "Load Sample Data"'
+                        rows="12"
+                    ></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button id="loadSampleBtn" class="btn btn-secondary">Load Sample Data</button>
+                    <button id="analyzeBtn" class="btn btn-primary">Analyze</button>
+                </div>
+
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </section>
+
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <div class="card score-card">
+                    <h2 class="section-title">Wellness Score</h2>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <div class="score-value" id="overallScore">--</div>
+                            <div class="score-label">/ 100</div>
+                        </div>
+                        <div class="score-status" id="scoreStatus">Calculating...</div>
+                    </div>
+                </div>
+
+                <div class="card breakdown-card">
+                    <h2 class="section-title">Score Breakdown</h2>
+                    <div class="breakdown-grid" id="breakdownGrid"></div>
+                </div>
+
+                <div class="card tags-card">
+                    <h2 class="section-title">Behavioral Tags</h2>
+                    <div class="tags-container" id="tagsContainer"></div>
+                </div>
+
+                <div class="card patterns-card">
+                    <h2 class="section-title">Detected Patterns</h2>
+                    <ul class="patterns-list" id="patternsList"></ul>
+                </div>
+
+                <div class="card insight-card">
+                    <h2 class="section-title">AI Insight</h2>
+                    <div class="insight-content" id="insightContent">
+                        <div class="loading-spinner"></div>
+                        <p>Generating personalized insight...</p>
+                    </div>
+                </div>
+
+                <div class="card metrics-card">
+                    <h2 class="section-title">Quick Stats</h2>
+                    <div class="metrics-grid" id="metricsGrid"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Built with Rule-based AI + LLM Intelligence</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
