@@ -2,17 +2,23 @@
 Flask API for Digital Wellness Analyzer
 """
 
+import os
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from analyzer import WellnessAnalyzer
 from llm_insights import LLMInsightGenerator
+from dotenv import load_dotenv  # <-- import dotenv
+
+# Load environment variables from .env
+load_dotenv()
 
 app = Flask(__name__, static_folder='.')
 CORS(app)
 
 # Core components
 analyzer = WellnessAnalyzer()
-llm_generator = LLMInsightGenerator()
+api_key = os.getenv("OPENAI_API_KEY")  # <-- load API key from .env
+llm_generator = LLMInsightGenerator(api_key=api_key)  # <-- pass key safely
 
 
 @app.route('/')

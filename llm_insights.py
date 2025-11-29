@@ -4,6 +4,10 @@ LLM Integration Module – Generates natural language insights using OpenAI or f
 
 import os
 from typing import Dict, Any
+from dotenv import load_dotenv  # <-- added to load .env
+
+# Load environment variables from .env
+load_dotenv()
 
 
 class LLMInsightGenerator:
@@ -11,6 +15,7 @@ class LLMInsightGenerator:
 
     def __init__(self, api_key: str = None, use_mock: bool = False):
         self.use_mock = use_mock
+        # Use provided API key or fallback to .env
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
 
         if not self.use_mock and not self.api_key:
@@ -19,6 +24,7 @@ class LLMInsightGenerator:
         if not self.use_mock:
             try:
                 from openai import OpenAI
+                # Initialize OpenAI client using the API key
                 self.client = OpenAI(api_key=self.api_key)
             except ImportError:
                 self.use_mock = True
